@@ -5,6 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\KlachtMailer;
 use Dotenv\Dotenv;
 use PHPMailer\PHPMailer\Exception;
+use App\KlachtLogger;
 
 // .env inladen
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -23,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $fout = 'Vul een geldig e-mailadres in.';
     } else {
+        $logger = new KlachtLogger();
+        $logger->logKlacht($naam, $email, $omschrijving);
         try {
             (new KlachtMailer())->verstuur($naam, $email, $omschrijving);
             $melding = 'Bedankt! Uw klacht is ontvangen. U krijgt een bevestiging per e-mail.';
@@ -34,10 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <title>Klachtenformulier</title>
 </head>
+
 <body>
     <h1>Klacht indienen</h1>
 
@@ -62,4 +67,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Versturen</button>
     </form>
 </body>
+
 </html>

@@ -6,6 +6,7 @@
     },
     "require": {
         "phpmailer/phpmailer": "^7.1",
-        "vlucas/phpdotenv": "^5.7"
+        "vlucas/phpdotenv": "^5.7",
+        "monolog/monolog": "^3.12"
     }
 }
