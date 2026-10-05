@@ -37,35 +37,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Klachtenformulier</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <h1>Klacht indienen</h1>
+    <div class="container">
+        <h1>Klacht indienen</h1>
 
-    <?php if ($melding): ?>
-        <p style="color: green;"><?= $melding ?></p>
-    <?php endif; ?>
+        <?php if ($melding): ?>
+            <p class="melding"><?= $melding ?></p>
+        <?php endif; ?>
 
-    <?php if ($fout): ?>
-        <p style="color: red;"><?= $fout ?></p>
-    <?php endif; ?>
+        <?php if ($fout): ?>
+            <p class="fout"><?= $fout ?></p>
+        <?php endif; ?>
 
-    <form method="post">
-        <label for="naam">Naam</label><br>
-        <input type="text" id="naam" name="naam" required><br><br>
+        <form method="post">
+            <label for="naam">Naam</label>
+            <input type="text" id="naam" name="naam" required>
 
-        <label for="email">E-mail</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
 
-        <label for="omschrijving">Omschrijving klacht</label><br>
-        <textarea id="omschrijving" name="omschrijving" rows="5" required></textarea><br><br>
+            <label for="omschrijving">Omschrijving klacht</label>
+            <textarea id="omschrijving" name="omschrijving" required></textarea>
 
-        <button type="submit">Versturen</button>
-    </form>
+            <button type="submit">Versturen</button>
+        </form>
+    </div>
 </body>
-
 </html>
